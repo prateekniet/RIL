@@ -1,0 +1,33 @@
+---
+  - name: Download kafka binaries
+    get_url: url="{{KAFKA_DOWNLOAD_URL}}" dest="{{SRC_PATH}}/{{artifact_name}}"
+
+  - name: Copy {{product}} tar to the destination path
+    copy: src="{{SRC_PATH}}/{{artifact_name}}"  dest="{{DEST_PATH}}"
+
+  - name: Extract the {{product}} binaries
+    unarchive: src="{{DEST_PATH}}/{{artifact_name}}" dest="{{DEST_PATH}}" remote_src=yes
+
+  - name: Rename {{product}} folder structure
+    command: sudo  mv -n "{{DEST_PATH}}/{{kafka_version}}" "{{DEST_PATH}}/{{product}}"    
+
+  - name: Shutdown the {{product}} service
+    shell: nohup "{{DEST_PATH}}/{{product}}"/bin/kafka-server-stop.sh &
+
+  - name: Wait for Port 9092 to be open
+    wait_for:
+        port: 9092
+        delay: 2
+        state: stopped
+        timeout: 100
+
+  - name: Start the service 
+    shell: nohup "{{DEST_PATH}}/{{product}}"/bin/kafka-server-start.sh "{{DEST_PATH}}"/kafka/config/server.properties &
+
+#
+#  - name: Installation of Default JRE
+#    shell: sudo apt-get install {{item}}
+#    with_items: 
+#        - "{{item1}}"
+#        - "{{item2}}"
+##        - "{{item3}}"

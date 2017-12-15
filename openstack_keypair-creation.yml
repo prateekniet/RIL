@@ -1,0 +1,41 @@
+---
+  - name: Create new keypair from current user's default SSH key
+    os_keypair:
+      state: present
+      auth:
+         auth_url: "{{ auth_url }}"
+         username: "{{ os_username }}"
+         password: "{{ os_password }}"
+         project_name: "{{ os_project_name }}"
+         project_domain_name: "{{ os_project_domain_name }}"
+         user_domain_name: "{{ os_user_domain_name }}"
+      verify: false
+      name: "{{ ansible_key }}"
+      region_name: "{{ region_name }}"
+    register: keypair
+  - name: Create local public
+    local_action:
+      module: copy
+      content: "{{ keypair.key.public_key }}"
+      dest: "~/.ssh/{{ keypair.key.name }}.pub"
+
+  - name: Create local private key
+    local_action:
+      module: copy
+      content: "{{ keypair.key.private_key }}"
+      dest: "~/.ssh/{{ keypair.key.name }}"
+    ignore_errors: True
+   
+
+#    - name: launch an instance
+#      os_keypair:
+#        state: present
+#        auth:
+#          auth_url: https://jpe2.jiocloud.com:5000/v3 
+#          username: Jiophone.Commonservices
+#          password: '&h^J4Qn4y+\^?t)N'
+#          project_name: JioPhone-CommonServices
+#          project_domain_name: 'default'
+#          user_domain_name: 'default'
+#        verify: false
+#        name: PrateekAnsibleKeyPairProv1 

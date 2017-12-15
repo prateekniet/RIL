@@ -1,0 +1,15 @@
+  ---
+    - name: launch an instance
+      os_volume:
+        state: present
+        auth:
+          auth_url: https://jpe2.jiocloud.com:5000/v3 
+          username: Jiophone.Commonservices
+          password: '&h^J4Qn4y+\^?t)N'
+          project_name: JioPhone-CommonServices
+          project_domain_name: 'default'
+          user_domain_name: 'default'
+        verify: false
+        size: "{{ volume_size }}"
+        display_name: "{{ volume }}"
+        availability_zone: "{{ availability_zone }}"

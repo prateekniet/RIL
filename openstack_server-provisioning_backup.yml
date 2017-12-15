@@ -1,0 +1,24 @@
+- name: launch a compute instance
+  hosts: localhost
+  tasks:
+    - name: launch an instance
+      os_server:
+        state: present
+        auth:
+          auth_url: https://jpe2.jiocloud.com:5000/v3 
+          username: Jiophone.Commonservices
+          password: '&h^J4Qn4y+\^?t)N'
+          project_name: JioPhone-CommonServices
+          project_domain_name: 'default'
+          user_domain_name: 'default'
+        verify: false
+        name: PrateekAnsibleProvServer1
+#        region_name: 'RegionOne'
+        availability_zone: nova
+        image: Ubuntu1604
+        flavor_ram: 4096
+        key_name: poc_key
+        timeout: 200
+        security_groups: NoRestriction
+        auto_ip: yes
+        network: Rahul-Push-Test-Network

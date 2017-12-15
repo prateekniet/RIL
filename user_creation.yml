@@ -1,0 +1,8 @@
+---
+  - name: Create New Linux User
+    user:    
+      name: "{{ LINUXUSER }}"  
+      password: "{{ PASSWORD_LINUXUSER }}"
+
+  - name: Add SUDO group
+    shell: adduser "{{ LINUXUSER }}" sudo

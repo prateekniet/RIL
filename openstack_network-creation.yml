@@ -1,0 +1,15 @@
+---    
+  - name: launch an instance
+    os_network:
+      state: present
+      auth:
+         auth_url: "{{ auth_url }}"
+         username: "{{ os_username }}"
+         password: "{{ os_password }}"
+         project_name: "{{ os_project_name }}"
+         project_domain_name: "{{ os_project_domain_name }}"
+         user_domain_name: "{{ os_user_domain_name }}"
+      verify: false
+      name: "{{ network_name }}" 
+      external: "{{ external_network_enabled }}"
+    ignore_errors: yes

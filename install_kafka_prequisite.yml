@@ -1,0 +1,10 @@
+---
+  - name: Update the repository
+    shell: sudo apt-get update
+
+  - name: Installation of Default JRE
+    shell: sudo apt-get install {{item}} -y
+    with_items: 
+        - "{{item1}}"
+        - "{{item2}}"
+        - "{{item3}}"

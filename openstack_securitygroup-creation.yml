@@ -1,0 +1,41 @@
+---
+  - name: Create a new security group
+    os_security_group:
+          state: present
+          auth:
+            auth_url: "{{ auth_url }}"
+            username: "{{ os_username }}"
+            password: "{{ os_password }}"
+            project_name: "{{ os_project_name }}"
+            project_domain_name: "{{ os_project_domain_name }}"
+            user_domain_name: "{{ os_user_domain_name }}"
+          verify: false
+          name: "{{ security_group_name }}" 
+  - name: Create a new security group allowing any ICMP
+    os_security_group_rule:
+          auth:
+            auth_url: "{{ auth_url }}"
+            username: "{{ os_username }}"
+            password: "{{ os_password }}"
+            project_name: "{{ os_project_name }}"
+            project_domain_name: "{{ os_project_domain_name }}"
+            user_domain_name: "{{ os_user_domain_name }}"
+          verify: false
+          security_group: "{{ security_group_name }}"
+          protocol: icmp
+          remote_ip_prefix: 0.0.0.0/0
+  - name: Create a new security group allowing any SSH connection
+    os_security_group_rule:
+          auth:
+            auth_url: "{{ auth_url }}"
+            username: "{{ os_username }}"
+            password: "{{ os_password }}"
+            project_name: "{{ os_project_name }}"
+            project_domain_name: "{{ os_project_domain_name }}"
+            user_domain_name: "{{ os_user_domain_name }}"
+          verify: false
+          security_group: "{{ security_group_name }}"
+          protocol: tcp
+          port_range_min: 22
+          port_range_max: 22
+          remote_ip_prefix: 0.0.0.0/0

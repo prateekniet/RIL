@@ -1,0 +1,34 @@
+---
+- name: launch an instance
+  os_server:
+      state: present
+      auth:
+        auth_url: "{{ auth_url }}"
+        username: "{{ os_username }}"
+        password: "{{ os_password }}"
+        project_name: "{{ os_project_name }}"
+        project_domain_name: "{{ os_project_domain_name }}"
+        user_domain_name: "{{ os_user_domain_name }}"
+      verify: false
+      name: "{{ prefix }}-{{ name }}"
+      key_name: "{{ ansible_key }}"
+      availability_zone: "{{ availability_zone }}"
+      network: "{{ network_name }}"
+      image: "{{ image }}"
+      security_groups: "{{ security_group_name }}"
+      auto_ip: "{{ auto_ip }}"
+      flavor_ram: "{{ flavor_ram }}"
+      volumes: "{{ volumes }}"
+  register: os_hosts
+- name: Show Server's IP
+  debug: var=os_hosts.openstack.public_v4
+#        name: PrateekAnsibleProvServer1
+#        region_name: 'RmeegionOne'
+#        availability_zone: nova
+#        image: Ubuntu1604
+#        flavor_ram: 4096
+#        key_name: poc_key
+#        timeout: 200
+#        security_groups: NoRestriction
+#        auto_ip: yes
+##        network: Rahul-Push-Test-Network
