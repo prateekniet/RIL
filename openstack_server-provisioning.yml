@@ -22,6 +22,9 @@
   register: os_hosts
 - name: Show Server's IP
   debug: var=os_hosts.openstack.public_v4
+
+- name: Show private key used while launching instances 
+  shell: cat ~/.ssh/"{{ ansible_key }}"
 #        name: PrateekAnsibleProvServer1
 #        region_name: 'RmeegionOne'
 #        availability_zone: nova
