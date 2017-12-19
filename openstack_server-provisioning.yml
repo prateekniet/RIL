@@ -18,6 +18,8 @@
       security_groups: "{{ security_group_name }}"
       auto_ip: "{{ auto_ip }}"
       flavor_ram: "{{ flavor_ram }}"
+      boot_from_volume: "{{ boot_from_volume_enabled }}"
+      boot_volume: "{{ boot_volume }}"
       volumes: "{{ volumes }}"
   register: os_hosts
 - name: Show Server's IP
