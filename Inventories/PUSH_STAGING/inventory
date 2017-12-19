@@ -1,16 +1,16 @@
 [prateek]
 localhost
 [prateek:vars]
-prefix=devpush-rep-4
-name=devpush-rep-4
+prefix=devpush-cep-4
+name=devpush-cep-4
 region_name='RegionOne'
 availability_zone=JPHONE-ROW3-POD1
 image=Centos_7.3
 flavor_ram=16384
 auto_ip='yes'
-volumes=devpush-rep-4
+volumes=devpush-cep-4
 volume_size=50
-ansible_key=devpush-rep-4
+ansible_key=devpush-cep-4
 network_name=pushdevnet
 external_network_enabled='false'
 security_group_name=NoRestriction
@@ -21,7 +21,7 @@ os_project_name=JioPhone-PUSH-Staging
 os_project_domain_name='default'
 os_user_domain_name='default'
 os_url_verify=false
-
+#floating_ip_pool_name=JPE2-nonprod
 
 
 #[prateek1:vars]
