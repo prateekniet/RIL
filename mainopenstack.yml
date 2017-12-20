@@ -8,9 +8,10 @@
   tasks:
 
 #Creating environment specific deployable unit
-#    - include: openstack_securitygroup-creation.yml
-#    - include: openstack_network-creation.yml#    - include: openstack_keypair-creation.yml
-#    - include: openstack_volume-creation.yml 
+    - include: openstack_securitygroup-creation.yml
+    - include: openstack_network-creation.yml
+    - include: openstack_keypair-creation.yml
+    - include: openstack_volume-creation.yml 
     - include: openstack_server-provisioning.yml
 #    - include: opendj-install-configure.yml
 #    - include: openam-install.yml
