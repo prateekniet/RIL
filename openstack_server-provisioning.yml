@@ -14,7 +14,7 @@
       key_name: "{{ ansible_key }}"
       availability_zone: "{{ availability_zone }}"
       network: "{{ network_name }}"
-      image: "{{ image }}"
+#      image: "{{ image }}"
       security_groups: "{{ security_group_name }}"
       auto_ip: "{{ auto_ip }}"
       flavor_ram: "{{ flavor_ram }}"
